@@ -1,0 +1,32 @@
+This project provides a rest api that implementing a storage array simulator ,it has  these functions :
+1.Create one or multiple LUN¡¯s.
+2.Resize a LUN.
+3.Remove a LUN.
+4.Retrieve the information (size) of a LUN.
+5.Data persistence.
+All data are stored to database.
+Lun has five attributes: kunId,lunName,lunSize,initialGroup,targetGroup
+Access url is http://localhost:8080/StorageSimulator/rest/lun/
+LunClient.java in package com.yang.rest.client shows how to use these functions.
+1.CreateLun function, you can add a lun ,you should provide info of lun  http://localhost:8080/StorageSimulator/rest/lun/
+2.DeleteLun function, you can delete a lun ,you should provide lun id http://localhost:8080/StorageSimulator/rest/lun/{id}
+3.UpdateLun function£¬you can resize a lun ,change lun name ,initialGroup ,targetGroup ,you should provide new lun info http://localhost:8080/StorageSimulator/rest/lun/
+4.GetlunInfo function ,you can get info of one lun with certain id or all luns.http://localhost:8080/StorageSimulator/rest/lun/{id}
+Below is the result of get all luns' info ,it is showed in xml format. 
+
+<luns>
+<lun>
+<initialGroup>ig1</initialGroup>
+<lunId>001</lunId>
+<lunName>lun1</lunName>
+<lunSize>1G</lunSize>
+<targetGroup>tg1</targetGroup>
+</lun>
+<lun>
+<initialGroup>ig1</initialGroup>
+<lunId>002</lunId>
+<lunName>lun2</lunName>
+<lunSize>1G</lunSize>
+<targetGroup>tg1</targetGroup>
+</lun>
+</luns>

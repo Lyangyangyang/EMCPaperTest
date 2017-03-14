@@ -1,0 +1,69 @@
+Test Cases:
+
+1: Create one or multiple LUNs
+Test Objective: Lun£¨one or more£©could be created successfully
+Test Procedures:1.Navigate to Lun management page£¬find create lun button£¬make sure it is in the right place £¨Appearance£©
+		        2.Create one lun ,input both reasonable/unreasonable name£¬like input null or some other thing,then verify the result
+			    3.With size attribute,input 0G and one big number that over capacity the storage allowed. 
+				4.After creating lun,verify if it lists right
+				5.Create multiple luns,make sure each could be created successfully
+Expected result: with reasonable parameter,lun/luns created successfully,with unreasonable parameter there should be reminder and return error
+
+2: Resize (expand) a LUN
+Test Objective: Size of lun could be resized successfully
+Test Procedures:1.Navigate to Lun management page
+                2.select one lun,change the size attribute to 0,1,and one big number that over capacity the storage allowed
+                3.After resizing lun,verify if it lists right
+Expected results:with reasonable parameter,lun can be resized successfully ,with unreasonable parameter there should be reminder and return error
+               
+3: Export a LUN to a host
+Test Objective: Export a lun to a host successfully
+Host platform: All platforms that storage supported
+Configuration: config iscsi for host
+Test Procedures:1.Navigate to Lun management page
+                2.Select one LUN that has not been exported to one host,export it to a real/non-existing host(with different configuration)
+				3.Select one LUN that has been exported to one host, try to export it to another host,shoud be failed 
+                4.If export action succeeds,verify lun lists right from host side
+Expected results:With host non-existing or inproper configuration,it should be failed .Or lun should be exported to a host successfully.
+             
+4: un-export a LUN
+Test Objective: Un-exported a lun from a host successfully
+Host platform: All platforms that storage supported
+Configuration: config iscsi for host
+Test Procedures:1.Navigate to Lun management page
+                2.Select one LUN that has not been exported to one host,select un-export it ,should be failed  
+				3.Select one LUN that has been exported to one host, un-export it when lun is been used or not.
+Expected results:LUNs can be un-exported successfully 
+
+5: Remove an un-exported LUN
+Test Objective: LUN can be removed successfully if it is un-exported
+Test Procedures:1.Navigate to Lun management page
+                2.Select one LUN that has not been exported to one host,select remove it  
+				3.Select one LUN that has been exported to one host, select remove it,should be failed ,return warning should un-export it first
+Expected results:Un-exported lun can be removed successfully
+
+6: Retrieve the information (size, export) of a LUN
+Test Objective:Retrieve the information of a LUN
+Host platform: All platforms that storage supported
+Test Procedures:1.Navigate to Lun management page
+                2.select one lun and select show info of it 
+                3.verify the result
+Expected results:Information of a LUN listed right
+
+7: Concurrent requests is supported
+Test Objective: Verify  concurrent requests is supported
+Test Procedures:1.create lun with same name at same time on different browsers,check the result,only one succeed
+                2.Export a lun to different/same host at same time on different browsers
+				3.Un-export a lun at same time on different browsers
+				4.Edit/delete lun at same time
+                
+Expected results:Concurrent requests can be handled right
+           
+8: Performance is not impacted no matter how many LUN¡¯s are created and exported
+Test Objective: Verify performance is not  impacted 
+Tools : Loadrunner or other performance test tool
+Test Procedures:1. create/export as many as luns
+                2. check performance(IOPS)
+Expected results:Performance is not impacted
+
+
